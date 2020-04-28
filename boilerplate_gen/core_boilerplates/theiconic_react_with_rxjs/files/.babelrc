@@ -1,0 +1,24 @@
+{
+  "presets": [
+    "@babel/preset-env",
+    "@babel/preset-react",
+    "@babel/preset-typescript"
+  ],
+  "plugins": [
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-proposal-optional-chaining",
+    ["babel-plugin-module-resolver", {
+        "root": ["./src/"],
+        "alias": {
+            "@/App": "./src/App",
+            "@/client": "./src/client",
+            "@/components": "./src/components",
+            "@/module": "./src/module",
+            "@/store": "./src/store",
+            "@/utils": "./src/utils",
+            "@/interface": "./src/interface",
+            "@/tests": "./tests"
+        }
+    }]
+  ]
+}
