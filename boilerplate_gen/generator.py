@@ -99,6 +99,10 @@ def out(command):
   return result.stdout
 
 def set_proper_env(config: configparser.ConfigParser):
+  if not config.has_section('user_vars'):
+    print("Did not find user_vars section on config, moving ahead")
+    return
+
   user_vars = dict(config.items('user_vars'))
 
   user_vars = {k: (lambda val : val.split(','))(v) for k, v in user_vars.items()}

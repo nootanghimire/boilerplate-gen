@@ -54,7 +54,7 @@ def choose_commands(config, arguments):
   if subcommand == 'generate':
     generate(arguments, config)
   if subcommand == 'list':
-    main_list(arguments.choices, config)
+    main_list(arguments.type, config)
   if subcommand == 'info':
     info(arguments, config)
 
