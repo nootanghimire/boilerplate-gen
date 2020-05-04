@@ -1,5 +1,5 @@
 # boilerplate-gen
-Boilerplate generation tool for various tech stacks
+A generic boilerplate generation tool for various tech stacks
 
 # Setting up
 This need python3 installed, if possible python3.8
