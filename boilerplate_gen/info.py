@@ -6,7 +6,7 @@ import configparser
 def info(arguments, app_config):
   infos = []
   for b in arguments.boilerplate:
-    infos.append(dict(info_one(b, app_config).items('plugin')))
+    infos.append(dict(info_one(b, app_config)[0].items('boilerplate')))
     
   print(infos)
 
@@ -20,7 +20,7 @@ def info_one(boilerplate, app_config):
   if  boilerplate in list_of_bps['core']:
     bp_info['type'] = 'core'
   elif boilerplate in list_of_bps['external']:
-    bb_info['type'] = 'external'
+    bp_info['type'] = 'external'
   else:
     raise Exception('Could not find boilerplate, try checking if it exists using the list command')
 
@@ -36,5 +36,5 @@ def info_one(boilerplate, app_config):
 
   bp_config.read(path + os.sep + 'config.cfg');
 
-  return bp_config
+  return (bp_config, path)
 

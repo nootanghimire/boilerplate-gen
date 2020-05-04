@@ -27,7 +27,7 @@ def do_generate(boilerplate, arguments, appconfig):
   print(" ")
   # Get config
   
-  bp_config = info_one(boilerplate, appconfig)
+  bp_config, bp_dir = info_one(boilerplate, appconfig)
 
   # Validate user env
   # Later: Validate all the depends_on section is installed
@@ -35,7 +35,7 @@ def do_generate(boilerplate, arguments, appconfig):
   # Prompt user for necessary info and set env vars
   set_proper_env(bp_config, dry_run)
 
-  bp_dir = appconfig['core_dir'] + os.sep + boilerplate 
+  # bp_dir = appconfig['core_dir'] + os.sep + boilerplate 
   before_copy_script = bp_dir + os.sep + bp_config.get('boilerplate', 'before_copy', fallback='before_copy.py')
   after_copy_script = bp_dir + os.sep + bp_config.get('boilerplate', 'after_copy', fallback='after_copy.py')
   during_install_script = bp_dir + os.sep + bp_config.get('boilerplate', 'during_install', fallback='during_install.py')

@@ -39,6 +39,10 @@ def get_app_config(arg_config_file):
     fallback=defaultConfig.get('config', 'boilerplates_dir')
   ))
 
+  if not os.path.exists(boilerplates_dir):
+    raise FileNotFoundError('Boilerplate directory specified in config not found. Please create the following dir: ' + boilerplates_dir)
+
+
   # Get the core boilerplates directory from config
   core_boilerplates_dir = get_core_boilerplates_dir()
 
@@ -54,6 +58,7 @@ def choose_commands(config, arguments):
   if subcommand == 'generate':
     generate(arguments, config)
   if subcommand == 'list':
+    print('aa', config)
     main_list(arguments.type, config)
   if subcommand == 'info':
     info(arguments, config)
@@ -80,6 +85,18 @@ def parser_setup_and_parse():
   list_parser.add_argument('type', choices=['core', 'external', 'both'])
 
   namespace = parser.parse_args()
+
+  # See config override
+  configFile = namespace.config
+
+  if not configFile is None:
+    if not os.path.isabs(configFile):
+      config = os.path.abspath(configFile)
+      if not os.path.isfile(configFile):
+        print("Incorrect config file supplied")
+        return
+      os.environ['PYTHON_BOILERPLATE_GEN_CONFIG_FILE'] = configFile
+  
   
   try:
     config = get_app_config(namespace.config)
