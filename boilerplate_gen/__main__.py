@@ -69,6 +69,7 @@ def parser_setup_and_parse():
   generator_parser = subparsers.add_parser('generate', help='Generate a boilerplate')
   generator_parser.add_argument('-b', '--boilerplate', help='Boilerplate name', required=True)
   generator_parser.add_argument('-p', '--path', help="path to where you want to generate boilerplate", default=".")
+  generator_parser.add_argument('-d', '--dry-run', help="Runs the steps, but does not actually change anything. Good way to debug your config", action='store_true')
 
   info_parser = subparsers.add_parser('info', help='Get information about particular boilerplate')
   info_parser.add_argument('-b', '--boilerplate', help='Boilerplate name(s)', action='append', required=True)
